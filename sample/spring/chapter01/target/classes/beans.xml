@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="heavent" class="com.heavent.spring.dao.User">
+        <property name="name" value="heavent" />
+        <property name="age" value="18" />
+    </bean>
+    <bean id="george" class="com.heavent.spring.dao.User">
+        <property name="name" value="george" />
+        <property name="age" value="24" />
+    </bean>
+
+
+    <!-- 属性为list/set/map/array注入示例，以及将属性值设为null -->
+    <bean id="department" class="com.heavent.spring.dao.Department" >
+        <property name="code" value="financial_analysis" />
+        <property name="name" value="财经分析部门" />
+        <property name="minister" >
+            <null></null>
+        </property>
+        <property name="employee">
+            <set>
+                <ref bean="heavent"></ref>
+                <ref bean="george"></ref>
+            </set>
+        </property>
+        <property name="excellentEmployee">
+            <list>
+                <ref bean="heavent" />
+                <ref bean="george" />
+            </list>
+        </property>
+        <property name="leader">
+            <map>
+                <entry key="teamA" value-ref="heavent" />
+                <entry key="teamB" value-ref="george" />
+            </map>
+        </property>
+        <property name="teams" >
+            <array>
+                <value>teamA</value>
+                <value>teamB</value>
+            </array>
+        </property>
+
+    </bean>
+
+</beans>
